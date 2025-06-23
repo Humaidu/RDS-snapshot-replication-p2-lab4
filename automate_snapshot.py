@@ -1,9 +1,12 @@
 import boto3
+from datetime import datetime
+
+timestamp = datetime.utcnow().strftime('%Y-%m-%d-%H-%M')
+snapshot_name = f'rds-auto-snapshot-{timestamp}'
+copy_name = f'rds-auto-copy-{timestamp}'
 
 source_region = 'eu-central-1'
 destination_region = 'eu-west-1'
-snapshot_name = 'rds-auto-snapshot'
-copy_name = 'rds-snapshot-auto-copy'
 
 # Creating RDS client for both regions
 rds_source = boto3.client('rds', region_name=source_region)
